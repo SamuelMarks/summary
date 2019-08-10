@@ -7,6 +7,13 @@ const array_types = Object.freeze([
 class Summary {
     constructor(_data, sorted) {
         this._data = _data;
+        this._cache_quartiles = {};
+        this.init(_data, sorted);
+    }
+    static _(_data, sorted) {
+        return new Summary(_data, sorted);
+    }
+    init(_data, sorted) {
         if (array_types.indexOf(_data.constructor) === -1) {
             throw TypeError('data must be an array');
         }
@@ -25,12 +32,6 @@ class Summary {
         this._cache_min = undefined;
         this._cache_variance = undefined;
     }
-    static _(_data, sorted) {
-        return new Summary(_data, sorted);
-    }
-    //
-    // Not all values are in lazy calculated since that wouldn't do any good
-    //
     data() {
         return this._data;
     }
@@ -43,9 +44,6 @@ class Summary {
     size() {
         return this._length;
     }
-    //
-    // Always lazy calculated functions
-    //
     sum() {
         if (this._cache_sum == null) {
             let sum = 0;
@@ -62,7 +60,6 @@ class Summary {
             let modeCount = 0;
             let currValue = data[0];
             let currCount = 1;
-            // Count the amount of repeat and update mode constiables
             for (let i = 1; i < this._length; i++) {
                 if (data[i] === currValue) {
                     currCount += 1;
@@ -76,7 +73,6 @@ class Summary {
                     currCount = 1;
                 }
             }
-            // Check the last count
             if (currCount >= modeCount) {
                 modeCount = currCount;
                 modeValue = currValue;
@@ -163,8 +159,6 @@ exports.summary = function (_data, sorted) {
         return new Summary(_data, sorted);
     }
     else {
-        this._data = _data;
-        this._sorted = sorted ? _data : undefined;
-        this._length = _data.length;
+        this.init(_data, sorted);
     }
 };

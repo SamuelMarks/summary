@@ -1,10 +1,23 @@
-# summary
-
+summary
+=======
+Fork of the [summary](https://github.com/AndreasMadsen/summary) project, in TypeScript.
 > Takes an array of numbers and calculates some descriptive statistics
+
+## Packaging:
+
+    version="$(jq -r .version package.json)"
+    package="${PWD##*/}-$version"
+    mkdir -p "$package"
+    cp {*.js*,*d.ts} "$package"
+    tar -cf "$package.tar" "$package"
+
+### Releasing
+
+    hub release create -m "$version release" -F "$package.tar" -a "$package.tar" "$(git rev-parse --abbrev-ref HEAD)"
 
 ## Installation
 
-```sheel
+```sh
 npm install summary
 ```
 

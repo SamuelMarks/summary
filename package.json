@@ -1,34 +1,34 @@
 {
   "name": "summary",
+  "version": "1.0.1",
   "description": "Takes an array of numbers and calculates some descriptive statistics",
-  "version": "1.0.0",
+  "keywords": [
+    "mean",
+    "median",
+    "mode",
+    "quartile",
+    "sd",
+    "size",
+    "sort",
+    "summary",
+    "variance"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/AndreasMadsen/summary.git"
+  },
+  "license": "MIT",
   "author": "Andreas Madsen <amwebdk@gmail.com>",
   "main": "./summary.js",
   "scripts": {
     "test": "mocha -r ts-node/register test.ts && tslint --project ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/AndreasMadsen/summary.git"
-  },
-  "keywords": [
-    "summary",
-    "sort",
-    "size",
-    "mode",
-    "mean",
-    "quartile",
-    "median",
-    "variance",
-    "sd"
-  ],
   "devDependencies": {
-    "@types/mocha": "^5.2.6",
-    "@types/node": "^11.13.4",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.1",
     "browser-assert": "^1.2.1",
-    "mocha": "^6.1.3",
-    "ts-node": "^8.1.0",
-    "typescript": "^3.4.3"
-  },
-  "license": "MIT"
+    "mocha": "^6.2.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  }
 }
